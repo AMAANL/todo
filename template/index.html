@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+        <form method="post" class="action-form">
+            <input type="text" name="user_action" placeholder="Type add, show, complete, edit, or exit" required>
+            <button type="submit">Submit</button>
+        </form>
+        <form method="post" class="edit-form">
+            <input type="text" name="user_action" placeholder="Type 'edit X' where X is the number" required>
+            <input type="text" name="new_todo" placeholder="New todo text" required>
+            <button type="submit">Edit Todo</button>
+        </form>
+        <ul>
+            {% for todo in todos %}
+                <li>{{ todo }}</li>
+            {% endfor %}
+        </ul>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
